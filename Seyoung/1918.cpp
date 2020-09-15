@@ -15,7 +15,7 @@ int main(){
 	scanf("%s", input);
 	
 	for(i=0; input[i]!='\0'; i++){
-		if(inpu                                                                                   t[i]>='A'&&input[i]<='Z') v.push_back(input[i]);
+		if(input[i]>='A'&&input[i]<='Z') v.push_back(input[i]);
 		else{
 			switch(input[i]){
 				case ')':
@@ -23,7 +23,7 @@ int main(){
 						v.push_back(s.top());
 						s.pop();
 					}
-					s.pop(); // '(' »©¾ßµÊ  
+					s.pop(); // '(' ë¹¼ì•¼ë¨  
 					break;
 				case '(':
 					s.push(input[i]);
@@ -34,7 +34,7 @@ int main(){
 						v.push_back(s.top());
 						s.pop();
 					}
-					s.push(input[i]); // ¿ì¼±¼øÀ§ ¸ÕÀú ´Ù ³Ö°í ³Ö±â  
+					s.push(input[i]); // ìš°ì„ ìˆœìœ„ ë¨¼ì € ë‹¤ ë„£ê³  ë„£ê¸°  
 					break;
 				case '*':
 				case '/':
