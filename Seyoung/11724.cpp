@@ -18,7 +18,7 @@ bool visited[MAX];
 
  
 
-//ÀüÇüÀûÀÎ DFS
+//ì „í˜•ì ì¸ DFS
 
 void DFS(int node)
 
@@ -34,9 +34,9 @@ void DFS(int node)
 
                  int next = graph[node][i];
 
-                 //node¿¡ ¿¬°áµÈ ´Ù¸¥ Á¤Á¡À» ¸ğµÎ ¹æ¹®
+                 //nodeì— ì—°ê²°ëœ ë‹¤ë¥¸ ì •ì ì„ ëª¨ë‘ ë°©ë¬¸
 
-                 //ÀÌ¹Ì ¹æ¹®Çß´Ù¸é ¹æ¹®ÇÏÁö ¾Ê´Â´Ù
+                 //ì´ë¯¸ ë°©ë¬¸í–ˆë‹¤ë©´ ë°©ë¬¸í•˜ì§€ ì•ŠëŠ”ë‹¤
 
                  if (!visited[next])
 
@@ -78,7 +78,7 @@ int main(void)
 
         int cnt = 0;
 
-        for (int i = 1; i <= N; i++)
+        for (int i = 1; i <= N; i++){
 
                  if (!visited[i])
 
@@ -90,7 +90,7 @@ int main(void)
 
                  }
 
- 
+        }
 
         cout << cnt << endl;
 
