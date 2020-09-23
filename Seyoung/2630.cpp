@@ -8,13 +8,13 @@ int arr[130][130];
 int w, b;
  
 void check(int size, int startX, int startY){
-	// Ã¼Å©¸¦ ½ÃÀÛÇÒ À§Ä¡ÀÇ »öÀ» target¿¡ ÀúÀåÇÏ±â
+	// ì²´í¬ë¥¼ ì‹œì‘í•  ìœ„ì¹˜ì˜ ìƒ‰ì„ targetì— ì €ì¥í•˜ê¸°
 	int target = arr[startX][startY];
 	
 	for(int x=startX; x<startX+size; x++){
 		for(int y = startY; y < startY + size; y++) { 
 		if(arr[x][y] != target) { 
-			// ´Ù¸¥ »ö Á¾ÀÌ ¹ß°ß µÇ¸é size¸¦ ¹İÀ¸·Î ÁÙ¿©¼­ 4µîºĞ ÇÑ´Ù  
+			// ë‹¤ë¥¸ ìƒ‰ ì¢…ì´ ë°œê²¬ ë˜ë©´ sizeë¥¼ ë°˜ìœ¼ë¡œ ì¤„ì—¬ì„œ 4ë“±ë¶„ í•œë‹¤  
 			check(size/2, startX, startY); 
 			check(size/2, startX + size/2, startY); 
 			check(size/2, startX, startY + size/2); 
@@ -23,7 +23,7 @@ void check(int size, int startX, int startY){
 			} 
 		}
 	}
-	// ¸ğµÎ °°Àº »öÀÌ´Ù  
+	// ëª¨ë‘ ê°™ì€ ìƒ‰ì´ë‹¤  
 	if(target==0) w++;
 	else b++;	
 }
@@ -39,6 +39,8 @@ int main(void){
 	}
 	
 	check(n, 0, 0);
+
+	printf("%d %d", w, b); 
 
 }
 
