@@ -1,100 +1,49 @@
 #include <iostream>
-
 #include <vector>
-
+#include <stdio.h>
+#include <string.h>
 using namespace std;
 
- 
+vector<int> map[1001];
+int n; 
+int ch[1001];
 
-const int MAX = 1000 + 1;
-
- 
-
-int M, N;
-
-vector<int> graph[MAX];
-
-bool visited[MAX];
-
- 
-
-//Ï†ÑÌòïÏ†ÅÏù∏ DFS
-
-void DFS(int node)
-
-{
-
-        visited[node] = true;
-
- 
-
-        for (int i = 0; i < graph[node].size(); i++)
-
-        {
-
-                 int next = graph[node][i];
-
-                 //nodeÏóê Ïó∞Í≤∞Îêú Îã§Î•∏ Ï†ïÏ†êÏùÑ Î™®Îëê Î∞©Î¨∏
-
-                 //Ïù¥ÎØ∏ Î∞©Î¨∏ÌñàÎã§Î©¥ Î∞©Î¨∏ÌïòÏßÄ ÏïäÎäîÎã§
-
-                 if (!visited[next])
-
-                         DFS(next);
-
-        }
-
+void DFS(int v){
+	int i; 
+	ch[v]=1; //≈Ωªˆ«ﬂ¥Ÿ¥¬ «•Ω√
+	
+	for(i=0; i<map[v].size(); i++){
+		if(ch[map[v][i]]==0){
+			DFS(map[v][i]);
+		}	
+	}	
 }
 
- 
+int main(void){
+	freopen("input.txt", "rt", stdin);
 
-int main(void)
-
-{
-
-        cin >> N >> M;
-
- 
-
-        for (int i = 0; i < M; i++)
-
-        {
-
-                 int node1, node2;
-
-                 cin >> node1 >> node2;
-
- 
-
-                 //undirected graph
-
-                 graph[node1].push_back(node2);
-
-                 graph[node2].push_back(node1);
-
-        }
-
- 
-
-        int cnt = 0;
-
-        for (int i = 1; i <= N; i++){
-
-                 if (!visited[i])
-
-                 {
-
-                         DFS(i);
-
-                         cnt++;
-
-                 }
-
-        }
-
-        cout << cnt << endl;
-
-        return 0;
-
+	int m, i, a, b;
+	scanf("%d %d", &n, &m);
+	
+	// ¿Œ¡¢∏ÆΩ∫∆Æ  ∏µŒ ¿‘∑¬  
+	for(i=1; i<=m; i++){
+		scanf("%d %d", &a, &b);
+		// π´πÊ«‚¿∫ ∞ æÁπÊ«‚¿Ã¥Ÿ !!!  
+		map[a].push_back(b); 
+		map[b].push_back(a); 
+	}
+	
+	int cnt=0;
+	
+	// ¿Œ¡¢∏ÆΩ∫∆Æ ¡§¡°∫∞ dfs ≈Ωªˆ  
+	for(i=1; i<=n; i++){
+		if(ch[i]==0){ //πÊπÆ«— ¿˚ æ¯¿ª ∂ß∏∏ ≈Ωªˆ  
+			DFS(i);
+			cnt++;
+		}
+	}
+	
+	printf("%d", cnt);
+	
 }
 
