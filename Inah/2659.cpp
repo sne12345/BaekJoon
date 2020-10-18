@@ -5,35 +5,30 @@
 
 using namespace std;
 
-int findMinClockNum(int a)
+int findClockNum(int a)
 {
-	int min = 99999;
+	int min = a;
 
-	for (int i = 0; i < SIZE - 1; i++) {
+	for (int i = 0; i < 3; i++) {
 		a = a % 1000 * 10 + a / 1000;
-		min = a < min ? a : min;
+		if (min > a) min = a;
 	}
 
 	return min;
 }
 int main()
 {
-	int num[SIZE], n = 0, minN;
-	int cnt = 1;
+	int num[SIZE], minN;
+	int cnt = 0;
 
 	for (int i = 0; i < SIZE; i++) {
 		cin >> num[i];
 	}
 
-	for (int i = 0; i < SIZE; i++) {
-		n *= 10;
-		n += num[i];
-	}
+	minN = findClockNum(num[0] * 1000 + num[1] * 100 + num[2] * 10 + num[3]);
 
-	minN = findMinClockNum(n);
-
-	for (int i = 1111; i <= n; i++) {
-		if (findMinClockNum(i) == i) cnt++;
+	for (int i = 1111; i <= minN; i++) {
+		if (findClockNum(i) == i) cnt++;
 	}
 
 	cout << cnt << endl;
