@@ -12,7 +12,7 @@ int n;
 char pic[MAX][MAX];
 int chk[MAX][MAX];
 
-void DFS(int x, int y, char c, bool isDis)
+void DFS(int x, int y, char c)
 {
 	chk[x][y] = 1;
 
@@ -22,19 +22,7 @@ void DFS(int x, int y, char c, bool isDis)
 
 		if (nx < 0 || nx >= n || ny < 0 || ny >= n) continue;
 
-		if (!isDis) {
-			if(!chk[nx][ny] && pic[nx][ny] == c) DFS(nx, ny, c, isDis);
-		}
-		else {
-			if (!chk[nx][ny]) {
-				if (c == 'R' || c == 'G') {
-					if(pic[nx][ny] == 'R' || pic[nx][ny] == 'G') DFS(nx, ny, c, isDis);
-				}
-				else {
-					if (pic[nx][ny] == c) DFS(nx, ny, c, isDis);
-				}
-			}
-		}
+		if(!chk[nx][ny] && pic[nx][ny] == c) DFS(nx, ny, c);
 	}
 }
 int main()
@@ -52,11 +40,18 @@ int main()
 		for (int j = 0; j < n; j++) {
 			if (!chk[i][j]) {
 				cnt++;
-				DFS(i, j, pic[i][j], 0);
+				DFS(i, j, pic[i][j]);
 			}
 		}
 	}
 	cout << cnt << " ";
+
+	//G를 R로 변경
+	for (int i = 0; i < n; i++) {
+		for (int j = 0; j < n; j++) {
+			if (pic[i][j] == 'G') pic[i][j] = 'R';
+		}
+	}
 
 	//초기화 작업
 	memset(chk, 0, sizeof(chk));
@@ -67,7 +62,7 @@ int main()
 		for (int j = 0; j < n; j++) {
 			if (!chk[i][j]) {
 				cnt++;
-				DFS(i, j, pic[i][j], 1);
+				DFS(i, j, pic[i][j]);
 			}
 		}
 	}
