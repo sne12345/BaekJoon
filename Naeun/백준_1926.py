@@ -16,6 +16,7 @@ def bfs(x,y):
         x, y = queue.pop()
         for i in range(4):
             nx, ny = x + dx[i], y + dy[i]
+
             if 0 <= nx < n and 0 <= ny < m :
                 if mat[nx][ny] == 1 and not check[nx][ny]:
                     w += 1
